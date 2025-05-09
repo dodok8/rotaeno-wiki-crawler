@@ -1,16 +1,16 @@
 import ky from 'ky'
-import { Window } from 'happy-dom'
+import { JSDOM } from 'jsdom'
 
 export async function fetchWikiPage(pageName: string) {
   const baseUrl = 'https://wikiwiki.jp/rotaeno'
   const requestUrl = `${baseUrl}/${encodeURIComponent(pageName)}`
 
   try {
-    const response = await ky.get(requestUrl).text()
+    const response = await ky.get(requestUrl)
+    const text = await response.text()
 
-    const window = new Window()
-    const document = window.document
-    document.documentElement.innerHTML = response
+    const dom = new JSDOM(text)
+    const document = dom.window.document
 
     return document
   } catch (error) {
