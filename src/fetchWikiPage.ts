@@ -3,7 +3,10 @@ import { JSDOM } from 'jsdom'
 
 export async function fetchWikiPage(pageName: string) {
   const baseUrl = 'https://wikiwiki.jp/rotaeno'
-  const requestUrl = `${baseUrl}/${encodeURIComponent(pageName)}`
+  const requestUrl =
+    pageName === 'LINK x LIN#S'
+      ? `${baseUrl}/${pageName}`
+      : `${baseUrl}/${encodeURIComponent(pageName)}`
 
   try {
     const response = await ky.get(requestUrl)
