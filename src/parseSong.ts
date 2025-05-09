@@ -45,10 +45,21 @@ export function parseSong(
 
   // Third Table: Parse const
 
-  const thirdTable = document.querySelector(
-    '#content > div.nobr > div.h-scrollable:nth-child(5)'
-  )
-  const constCells = thirdTable?.querySelectorAll('td') || []
+  const rows = document.querySelectorAll('.h-scrollable table tbody tr')
+  let constantsRow = undefined
+
+  for (const row of rows) {
+    if (row.textContent?.includes('譜面定数')) {
+      constantsRow = row.nextElementSibling // The values are in the next row
+      break
+    }
+  }
+
+  // Extract the values from the cells
+  const constants = []
+  const constCells = constantsRow?.querySelectorAll(
+    'td'
+  ) as NodeListOf<HTMLTableCellElement>
 
   const difficulties = ['Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅳ-α'] as const
 
@@ -56,6 +67,10 @@ export function parseSong(
     difficulty: difficulties[idx],
     const: Number(cell.textContent),
   })) as Song['charts']
+
+  if (charts.length == 0) {
+    console.log(title)
+  }
 
   return {
     id,
@@ -73,3 +88,4 @@ export function parseSong(
 // #content > div.nobr > div.h-scrollable:nth-child(1) 첫 번째 표
 // #content > div.nobr > div.h-scrollable:nth-child(1) img 이미지 태그
 // #content > div.nobr > div.h-scrollable:nth-child(5) 세 번 째 표
+// .nobr > ul:nth-child(5) > li:nth-child(2) > div:nth-child(3) 세번째 표가 이렇게 되어 있는 경우도 있다.
