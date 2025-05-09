@@ -2,8 +2,8 @@ import { expect, test, describe } from 'bun:test'
 
 describe('Parse Rotaeno Song Page', () => {
   test('심장병', async () => {
-    const document = await fetchRotaenoWikiPage('심장병')
-    const result = parseRotaenoSong(document)
+    const document = await fetchWikiPage('심장병')
+    const result = parseSong(document)
 
     expect(result).toEqual({
       title: '심장병',
