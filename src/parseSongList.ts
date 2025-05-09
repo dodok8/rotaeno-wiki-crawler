@@ -18,7 +18,12 @@ export function ParseSongList(
     if (rawTitle === '') {
       continue
     }
-
+    if (row.getAttribute('colspan') === '8') {
+      continue
+    }
+    if (rawTitle.includes('▼')) {
+      continue
+    }
     // 만우절 제외
     const verInfo = row.querySelector('td:nth-child(3)')?.textContent || ''
 
