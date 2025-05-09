@@ -7,6 +7,7 @@ describe('Parse Rotaeno Song Page', () => {
 
     expect(result).toEqual({
       title: '심장병',
+      id: '심장병-HyuN feat. HUBOG',
       imageUrl:
         'https://cdn.wikiwiki.jp/to/w/rotaeno/%EC%8B%AC%EC%9E%A5%EB%B3%91/::ref/sinz.png.webp',
       pack: '基本曲',
