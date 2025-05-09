@@ -1,4 +1,6 @@
 import { expect, test, describe } from 'bun:test'
+import { fetchWikiPage } from '../src/fetchWikiPage'
+import { parseSong } from '../src/parseSong'
 
 describe('Parse Rotaeno Song Page', () => {
   test('심장병', async () => {
@@ -29,7 +31,7 @@ describe('Parse Rotaeno Song Page', () => {
           const: 8.2,
         },
         {
-          difficultyLevel: 'Ⅳ',
+          difficulty: 'Ⅳ',
           const: 9.5,
         },
       ],
